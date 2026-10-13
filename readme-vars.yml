@@ -37,7 +37,7 @@ app_setup_block: |
   * https://yourhost:3001/
 # init diagram
 init_diagram: |
-  "audacity:latest": {
+  "nomacs:latest": {
     docker-mods
     base {
       fix-attr +\nlegacy cont-init
@@ -54,6 +54,7 @@ init_diagram: |
     init-selkies-end -> init-config
     init-config -> init-config-end
     init-crontab-config -> init-config-end
+    init-nomacs-config -> init-config-end
     init-config -> init-crontab-config
     init-mods-end -> init-custom-files
     init-adduser -> init-device-perms
@@ -63,6 +64,7 @@ init_diagram: |
     init-mods-package-install -> init-mods-end
     init-mods -> init-mods-package-install
     init-selkies -> init-nginx
+    init-config -> init-nomacs-config
     init-adduser -> init-os-end
     init-device-perms -> init-os-end
     init-envfile -> init-os-end
@@ -105,7 +107,7 @@ init_diagram: |
   Base Images: {
     "baseimage-selkies:ubunturesolute" <- "baseimage-ubuntu:resolute"
   }
-  "audacity:latest" <- Base Images
+  "nomacs:latest" <- Base Images
 # changelog
 changelogs:
   - {date: "13.10.26:", desc: "Initial release."}
