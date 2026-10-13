@@ -1,0 +1,5 @@
+#!/usr/bin/with-contenv bash
+
+# permissions
+lsiown -R abc:abc \
+    /config \
