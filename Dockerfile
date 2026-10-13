@@ -22,13 +22,13 @@ RUN \
     https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/nomacs-logo.png && \
   echo "**** install nomacs ****" && \
   if [ -z "${NOMACS_VERSION}" ]; then \
-    APP_VERSION=$(curl -sX GET https://api.github.com/repos/nomacs/nomacs/releases/latest | \
+    NOMACS_VERSION=$(curl -sX GET https://api.github.com/repos/nomacs/nomacs/releases/latest | \
       jq -r '.tag_name'); \
   fi && \
   cd /tmp && \
   curl -fo \
     /tmp/nomacs.app -L \
-    "https://github.com/nomacs/nomacs/releases/download/${APP_VERSION}/nomacs-linux-x86_64.AppImage" && \
+    "https://github.com/nomacs/nomacs/releases/download/${NOMACS_VERSION}/nomacs-linux-x86_64.AppImage" && \
   chmod +x /tmp/nomacs.app && \
   ./nomacs.app --appimage-extract && \
   mv squashfs-root /opt/nomacs && \
